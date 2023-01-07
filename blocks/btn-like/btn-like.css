@@ -7,4 +7,9 @@
   background-color: inherit;
   border: none;
   margin-left: auto;
+  transition: opacity .3s ease;
+}
+
+.btn-like:hover {
+  opacity: 0.5;
 }

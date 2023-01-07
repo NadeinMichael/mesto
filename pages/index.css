@@ -26,3 +26,7 @@
 @import url("../blocks/gallery/__title/gallery__title.css");
 /* Block Btn-like */
 @import url("../blocks/btn-like/btn-like.css");
+@import url("../blocks/btn-like/_active/btn-like_active.css");
+/* Block Footer */
+@import url("../blocks/footer/footer.css");
+@import url("../blocks/footer/__data/footer__data.css");

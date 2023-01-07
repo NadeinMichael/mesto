@@ -8,3 +8,21 @@
 /* Block Header */
 @import url("../blocks/header/header.css");
 @import url("../blocks/header/__logo/header__logo.css");
+/* Block Main */
+@import url("../blocks/main/main.css");
+/* Block Profile */
+@import url("../blocks/profile/profile.css");
+@import url("../blocks/profile/__avatar/profile__avatar.css");
+@import url("../blocks/profile/__info/profile__info.css");
+@import url("../blocks/profile/__title/profile__title.css");
+@import url("../blocks/profile/__subtitle/profile__subtitle.css");
+@import url("../blocks/profile/__edit-button/profile__edit-button.css");
+@import url("../blocks/profile/__add-button/profile__add-button.css");
+/* Block Gallery */
+@import url("../blocks/gallery/gallery.css");
+@import url("../blocks/gallery/__element/gallery__element.css");
+@import url("../blocks/gallery/__img/gallery__img.css");
+@import url("../blocks/gallery/__info/gallery__info.css");
+@import url("../blocks/gallery/__title/gallery__title.css");
+/* Block Btn-like */
+@import url("../blocks/btn-like/btn-like.css");

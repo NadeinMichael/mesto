@@ -1,0 +1,6 @@
+.gallery__info {
+  display: flex;
+  align-items: center;
+  color: #000;
+  margin: 24px 21px 23px 21px;
+}

@@ -20,9 +20,9 @@
             alt="аватар"
           />
           <div class="profile__info">
-            <h1 class="profile__title">Жак-Ив Кусто</h1>
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
             <button class="profile__edit-button"></button>
-            <p class="profile__subtitle">Исследователь океана</p>
+            <p class="profile__profession">Исследователь океана</p>
           </div>
           <button class="profile__add-button"></button>
         </section>
@@ -91,5 +91,15 @@
         <p class="footer__data">&#169; 2023 Mesto Russia</p>
       </footer>
     </div>
+    <div class="popup">
+      <form class="popup__container" action="">
+        <button class="popup__btn-close"></button>
+        <span class="popup__title">Редактировать профиль</span>
+        <input class="popup__text popup__name" type="text" />
+        <input class="popup__text popup__profession" type="text" />
+        <input class="popup__submit" type="submit" value="Сохранить" />
+      </form>
+    </div>
+    <script src="index.js"></script>
   </body>
 </html>

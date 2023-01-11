@@ -9,3 +9,5 @@ _Методология БЭМ_
 _Начальная логика с применение JS_
 
 # Ссылка на gh-pages :
+
+https://vladtolmachev.github.io/mesto/

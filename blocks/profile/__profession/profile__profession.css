@@ -1,4 +1,5 @@
 .profile__profession {
+  width: 100%;
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
@@ -19,5 +20,6 @@
 @media all and (max-width: 570px) {
   .profile__profession {
     margin-top: 9px;
+    text-align: center;
   }
 }

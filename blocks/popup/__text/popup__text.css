@@ -9,6 +9,11 @@
   width: 358px;
   min-height: 27px;
   padding: 0;
+  margin-bottom: 30px;
+}
+
+.popup__text + .popup__text {
+  margin-bottom: 0;
 }
 
 @media all and (max-width: 550px) {

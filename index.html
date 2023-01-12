@@ -21,10 +21,18 @@
           />
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <button class="profile__edit-button"></button>
+            <button
+              class="profile__edit-button"
+              type="button"
+              aria-label="исправить"
+            ></button>
             <p class="profile__profession">Исследователь океана</p>
           </div>
-          <button class="profile__add-button"></button>
+          <button
+            class="profile__add-button"
+            type="button"
+            aria-label="закрыть"
+          ></button>
         </section>
         <section class="gallery">
           <div class="gallery__element">
@@ -35,7 +43,11 @@
             />
             <div class="gallery__info">
               <h2 class="gallery__title">Карачаевск</h2>
-              <button class="btn-like"></button>
+              <button
+                class="btn-like"
+                type="button"
+                aria-label="лайкнуть"
+              ></button>
             </div>
           </div>
           <div class="gallery__element">
@@ -46,14 +58,22 @@
             />
             <div class="gallery__info">
               <h2 class="gallery__title">Гора Эльбрус</h2>
-              <button class="btn-like"></button>
+              <button
+                class="btn-like"
+                type="button"
+                aria-label="лайкнуть"
+              ></button>
             </div>
           </div>
           <div class="gallery__element">
             <img class="gallery__img" src="images/dombay.jpg" alt="Домбай" />
             <div class="gallery__info">
               <h2 class="gallery__title">Домбай</h2>
-              <button class="btn-like"></button>
+              <button
+                class="btn-like"
+                type="button"
+                aria-label="лайкнуть"
+              ></button>
             </div>
           </div>
           <div class="gallery__element">
@@ -64,14 +84,22 @@
             />
             <div class="gallery__info">
               <h2 class="gallery__title">Гора Эльбрус</h2>
-              <button class="btn-like"></button>
+              <button
+                class="btn-like"
+                type="button"
+                aria-label="лайкнуть"
+              ></button>
             </div>
           </div>
           <div class="gallery__element">
             <img class="gallery__img" src="images/dombay.jpg" alt="Домбай" />
             <div class="gallery__info">
               <h2 class="gallery__title">Домбай</h2>
-              <button class="btn-like"></button>
+              <button
+                class="btn-like"
+                type="button"
+                aria-label="лайкнуть"
+              ></button>
             </div>
           </div>
           <div class="gallery__element">
@@ -82,7 +110,11 @@
             />
             <div class="gallery__info">
               <h2 class="gallery__title">Карачаево-Черкессия</h2>
-              <button class="btn-like"></button>
+              <button
+                class="btn-like"
+                type="button"
+                aria-label="лайкнуть"
+              ></button>
             </div>
           </div>
         </section>
@@ -92,13 +124,19 @@
       </footer>
     </div>
     <div class="popup">
-      <form class="popup__container">
-        <button class="popup__btn-close"></button>
-        <span class="popup__title">Редактировать профиль</span>
-        <input class="popup__text popup__name" type="text" />
-        <input class="popup__text popup__profession" type="text" />
-        <button class="popup__submit">Сохранить</button>
-      </form>
+      <div class="popup__container">
+        <button
+          class="popup__btn-close"
+          type="button"
+          aria-label="закрыть"
+        ></button>
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form class="popup__form" name="popup-form">
+          <input class="popup__text" type="text" name="popup-name" />
+          <input class="popup__text" type="text" name="popup-profession" />
+          <button class="popup__submit" type="submit">Сохранить</button>
+        </form>
+      </div>
     </div>
     <script src="scripts/index.js"></script>
   </body>

@@ -31,11 +31,11 @@
           <button
             class="profile__add-button"
             type="button"
-            aria-label="закрыть"
+            aria-label="добавить"
           ></button>
         </section>
         <section class="gallery">
-          <div class="gallery__element">
+          <!-- <div class="gallery__element">
             <img
               class="gallery__img"
               src="images/karachaevsk.jpg"
@@ -116,14 +116,14 @@
                 aria-label="лайкнуть"
               ></button>
             </div>
-          </div>
+          </div> -->
         </section>
       </main>
       <footer class="footer">
         <p class="footer__data">&#169; 2023 Mesto Russia</p>
       </footer>
     </div>
-    <div class="popup">
+    <div class="popup popup_edit-profile">
       <div class="popup__container">
         <button
           class="popup__btn-close"
@@ -131,13 +131,59 @@
           aria-label="закрыть"
         ></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup__form" name="popup-form">
+        <form class="popup__form" name="popup-form_edit">
           <input class="popup__text" type="text" name="popup-name" />
           <input class="popup__text" type="text" name="popup-profession" />
           <button class="popup__submit" type="submit">Сохранить</button>
         </form>
       </div>
     </div>
+    <div class="popup popup_add-photo">
+      <div class="popup__container">
+        <button
+          class="popup__btn-close"
+          type="button"
+          aria-label="закрыть"
+        ></button>
+        <h2 class="popup__title">Новое место</h2>
+        <form class="popup__form" name="popup-form_photo">
+          <input
+            class="popup__text"
+            type="text"
+            name="popup-place"
+            placeholder="Название"
+          />
+          <input
+            class="popup__text"
+            type="text"
+            name="popup-link"
+            placeholder="Ссылка на картинку"
+          />
+          <button class="popup__submit" type="submit">Создать</button>
+        </form>
+      </div>
+    </div>
+    <div class="popup popup_fullscreen-photo">
+      <div class="popup__container-fullscreen-photo">
+        <button
+          class="popup__btn-close"
+          type="button"
+          aria-label="закрыть"
+        ></button>
+        <img class="popup__img" />
+        <p class="popup__caption-img"></p>
+      </div>
+    </div>
+    <template id="card-template">
+      <div class="gallery__element">
+        <button class="btn-trash" type="button" aria-label="удалить"></button>
+        <img class="gallery__img" src="" alt="" />
+        <div class="gallery__info">
+          <h2 class="gallery__title"></h2>
+          <button class="btn-like" type="button" aria-label="лайкнуть"></button>
+        </div>
+      </div>
+    </template>
     <script src="scripts/index.js"></script>
   </body>
 </html>

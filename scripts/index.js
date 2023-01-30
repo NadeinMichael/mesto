@@ -51,38 +51,43 @@ const placeLinkInput = document.querySelector('[name="popup-link"]');
 // находим форму для добавления фото
 const popupFormPhoto = document.querySelector('[name="popup-form_photo"]');
 
-
-function renderCards(arr) {
-  const cards = arr.map((item) => {
-    const card = template.cloneNode(true);
-    card.querySelector('.gallery__img').src = item.link;
-    card.querySelector('.gallery__title').textContent = item.name;
-
-    return card;
-  });
-
-  gallery.append(...cards)
-}
-
-renderCards(initialCards);
-
 popupFormPhoto.addEventListener('submit', function (evt) {
   evt.preventDefault();
-  const place = placeNameInput.value;
-  const link = placeLinkInput.value;
 
-  const card = template.cloneNode(true);
-  card.querySelector('.gallery__img').src = link;
-  card.querySelector('.gallery__title').textContent = place;
+  const card = createCard({name:placeNameInput.value, link:placeLinkInput.value})
 
   gallery.prepend(card);
 
   popupAddPhoto.classList.remove('popup_opened');
+  popupFormPhoto.reset();
 })
 
+function renderCards(arr) {
+  const cards = arr.map((item) => {
+    return createCard(item);
+  });
+  gallery.append(...cards);
+}
+
+function createCard (item) {
+  const card = template.cloneNode(true);
+  card.querySelector('.gallery__img').src = item.link;
+  card.querySelector('.gallery__title').textContent = item.name;
+
+  card.querySelector('.btn-trash').addEventListener('click', () => {
+    card.remove();
+  })
+
+  const btnLike = card.querySelector('.btn-like');
+  btnLike.addEventListener('click', () => {
+    btnLike.classList.add('btn-like_active');
+  })
+
+  return card;
+}
 
 
-
+renderCards(initialCards);
 
 function openAddPhotoPopup() {
     popupAddPhoto.classList.add('popup_opened');
@@ -98,16 +103,12 @@ closePopupButton.forEach (el => {
    el.addEventListener('click', () => popupClose(el.closest('.popup')))
 });
 
-
-
-
 function openPopup () {
   popupEditProfile.classList.add('popup_opened');
 
   userNameInput.value = profileName.textContent;
   userJobInput.value = profileProfession.textContent;
 }
-
 
 editProfileButton.addEventListener('click', openPopup)
 
@@ -118,4 +119,3 @@ popupFormEdit.addEventListener('submit', function (evt) {
 
   popupEditProfile.classList.remove('popup_opened');
 })
-

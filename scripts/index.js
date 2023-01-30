@@ -11,6 +11,7 @@ const profileName = document.querySelector('.profile__name');
 // popup добавления картинки
 const popupAddPhoto = document.querySelector('.popup_add-photo');
 const addPhotoButton = document.querySelector('.profile__add-button');
+
 // Массив карточек
 const initialCards = [
   {
@@ -71,7 +72,9 @@ function renderCards(arr) {
 
 function createCard (item) {
   const card = template.cloneNode(true);
-  card.querySelector('.gallery__img').src = item.link;
+  const photoCard = card.querySelector('.gallery__img');
+  photoCard.src = item.link;
+  photoCard.alt = item.name;
   card.querySelector('.gallery__title').textContent = item.name;
 
   card.querySelector('.btn-trash').addEventListener('click', () => {
@@ -81,6 +84,12 @@ function createCard (item) {
   const btnLike = card.querySelector('.btn-like');
   btnLike.addEventListener('click', () => {
     btnLike.classList.add('btn-like_active');
+  })
+
+  photoCard.addEventListener('click', () => {
+    document.querySelector('.popup_fullscreen-photo').classList.add('popup_opened');
+    document.querySelector('.popup__img').src = item.link;
+    document.querySelector('.popup__caption-img').textContent = item.name;
   })
 
   return card;

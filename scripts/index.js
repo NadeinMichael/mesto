@@ -13,7 +13,7 @@ const popupAddPhoto = document.querySelector('.popup_add-photo');
 const addPhotoButton = document.querySelector('.profile__add-button');
 // попап фулскрина
 const fullscreenImagePopup = document.querySelector('.popup_fullscreen-photo');
-const fullscreenimage = document.querySelector('.popup__img');
+const fullscreenImage = document.querySelector('.popup__img');
 const fullscreenCaption = document.querySelector('.popup__caption-img');
 // находим темплейт
 const template = document.querySelector('#card-template').content.querySelector('.gallery__element');
@@ -97,8 +97,8 @@ function createCard (item) {
 
   photoCard.addEventListener('click', () => {
     openPopup(fullscreenImagePopup);
-    fullscreenimage.src = item.link;
-    fullscreenimage.alt = item.name
+    fullscreenImage.src = item.link;
+    fullscreenImage.alt = item.name
     fullscreenCaption.textContent = item.name;
   })
 

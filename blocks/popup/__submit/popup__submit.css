@@ -9,21 +9,28 @@
   text-align: center;
   width: 358px;
   height: 50px;
-  margin: 48px auto 37px;
+  margin: 18px auto 37px;
   padding: 0;
   border-radius: 2px;
   border: none;
   transition: opacity .3s ease;
 }
 
-.popup__submit:hover {
+.popup__submit:disabled {
+  border: 1px solid rgba(0, 0, 0, 1);
+  background-color: #fff;
+  color: black;
+  opacity: .2;
+}
+
+.popup__submit:not(:disabled):hover {
   opacity: .8;
 }
 
 @media all and (max-width: 550px) {
   .popup__submit {
     width: 238px;
-    margin: 45px auto 25px;
+    margin: 15px auto 25px;
     font-size: 14px;
     line-height: 17px;
   }

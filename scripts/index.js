@@ -25,7 +25,6 @@ const placeLinkInput = document.querySelector('[name="popup-link"]');
 // находим форму для добавления фото
 const popupFormPhoto = document.forms["popup-form_photo"];
 
-
 // Массив карточек
 const initialCards = [
   {
@@ -111,7 +110,18 @@ function openPopup (popup) {
   popup.classList.add('popup_opened');
 }
 
-addPhotoButton.addEventListener('click', () => openPopup(popupAddPhoto));
+function cleanErrorFields(formElement) {
+  const errorFields = formElement.querySelectorAll('.popup__text-error');
+
+  errorFields.forEach(element => {
+    element.textContent = '';
+  });
+}
+
+addPhotoButton.addEventListener('click', () => {
+  openPopup(popupAddPhoto);
+  setEventListeners(popupAddPhoto);
+});
 
 closePopupButtons.forEach (el => {
    el.addEventListener('click', () => closePopup(el.closest('.popup')))
@@ -119,9 +129,16 @@ closePopupButtons.forEach (el => {
 
 editProfileButton.addEventListener('click', () => {
   openPopup(popupEditProfile);
+  cleanErrorFields(popupEditProfile);
+
+  userNameInput.classList.remove('popup__text_type_error');
+  userJobInput.classList.remove('popup__text_type_error');
 
   userNameInput.value = profileName.textContent;
   userJobInput.value = profileProfession.textContent;
+
+ setEventListeners(popupEditProfile);
+
 });
 
 popupFormEdit.addEventListener('submit', function (evt) {
@@ -130,4 +147,22 @@ popupFormEdit.addEventListener('submit', function (evt) {
   profileProfession.textContent = userJobInput.value;
 
   closePopup(popupEditProfile);
+})
+
+const allFormslist = document.querySelectorAll('.popup');
+
+allFormslist.forEach (el => {
+  el.addEventListener('click', function (e) {
+    if(!e.target.closest('.popup__overlay')) {
+      closePopup(el.closest('.popup'));
+    }
+  })
+});
+
+document.addEventListener('keydown', function (e) {
+  const escKey = e.keyCode === 27;
+  if (escKey) {
+    const popupActive = document.querySelector('.popup_opened');
+    closePopup(popupActive);
+  }
 })

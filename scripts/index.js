@@ -25,56 +25,23 @@ const placeLinkInput = document.querySelector('[name="popup-link"]');
 // находим форму для добавления фото
 const popupFormPhoto = document.forms["popup-form_photo"];
 
-// Массив карточек
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
+const allFormslist = document.querySelectorAll('.popup');
 
-popupFormPhoto.addEventListener('submit', function (evt) {
-  evt.preventDefault();
-
-  const card = createCard({name:placeNameInput.value, link:placeLinkInput.value})
-
-  gallery.prepend(card);
-
-  closePopup(popupAddPhoto);
-  popupFormPhoto.reset();
-})
+// _________________________________FUNCTIONS________________________________________
 
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
-}
 
+    document.removeEventListener('keydown', closePopupWithEsc);
+};
 
 function renderCards(arr) {
   const cards = arr.map((item) => {
     return createCard(item);
   });
   gallery.append(...cards);
-}
+};
+renderCards(initialCards);
 
 function createCard (item) {
   const card = template.cloneNode(true);
@@ -102,13 +69,12 @@ function createCard (item) {
   })
 
   return card;
-}
-
-renderCards(initialCards);
+};
 
 function openPopup (popup) {
   popup.classList.add('popup_opened');
-}
+  document.addEventListener('keydown', closePopupWithEsc);
+};
 
 function cleanErrorFields(formElement) {
   const errorFields = formElement.querySelectorAll('.popup__text-error');
@@ -116,18 +82,33 @@ function cleanErrorFields(formElement) {
   errorFields.forEach(element => {
     element.textContent = '';
   });
+};
+
+function submitPopupFormPhoto (evt) {
+  evt.preventDefault();
+
+  const card = createCard({name:placeNameInput.value, link:placeLinkInput.value});
+
+  gallery.prepend(card);
+
+  closePopup(popupAddPhoto);
+  popupFormPhoto.reset();
+};
+
+function closePopupWithEsc (e) {
+  const escKey = e.keyCode === 27;
+  if (escKey) {
+    const popupActive = document.querySelector('.popup_opened');
+    closePopup(popupActive);
+  }
 }
 
-addPhotoButton.addEventListener('click', () => {
+function openPopupAddPhoto () {
   openPopup(popupAddPhoto);
   setEventListeners(popupAddPhoto);
-});
+};
 
-closePopupButtons.forEach (el => {
-   el.addEventListener('click', () => closePopup(el.closest('.popup')))
-});
-
-editProfileButton.addEventListener('click', () => {
+function openPopupEditProfile () {
   openPopup(popupEditProfile);
   cleanErrorFields(popupEditProfile);
 
@@ -139,17 +120,29 @@ editProfileButton.addEventListener('click', () => {
 
  setEventListeners(popupEditProfile);
 
-});
+};
 
-popupFormEdit.addEventListener('submit', function (evt) {
+function submitPopupFormEdit (evt) {
   evt.preventDefault();
   profileName.textContent = userNameInput.value;
   profileProfession.textContent = userJobInput.value;
 
   closePopup(popupEditProfile);
-})
+};
 
-const allFormslist = document.querySelectorAll('.popup');
+// _______________________________LISTENERS____________________________________________
+
+popupFormPhoto.addEventListener('submit', submitPopupFormPhoto);
+
+addPhotoButton.addEventListener('click', openPopupAddPhoto);
+
+editProfileButton.addEventListener('click', openPopupEditProfile);
+
+closePopupButtons.forEach (el => {
+   el.addEventListener('click', () => closePopup(el.closest('.popup')))
+});
+
+popupFormEdit.addEventListener('submit', submitPopupFormEdit);
 
 allFormslist.forEach (el => {
   el.addEventListener('click', function (e) {
@@ -159,10 +152,4 @@ allFormslist.forEach (el => {
   })
 });
 
-document.addEventListener('keydown', function (e) {
-  const escKey = e.keyCode === 27;
-  if (escKey) {
-    const popupActive = document.querySelector('.popup_opened');
-    closePopup(popupActive);
-  }
-})
+

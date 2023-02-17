@@ -78,6 +78,11 @@ function openPopup (popup) {
 
 function cleanErrorFields(formElement) {
   const errorFields = formElement.querySelectorAll('.popup__text-error');
+  const inputElements = formElement.querySelectorAll('.popup__text_type_error');
+
+  inputElements.forEach( el => {
+    el.classList.remove('popup__text_type_error');
+  });
 
   errorFields.forEach(element => {
     element.textContent = '';
@@ -111,9 +116,6 @@ function openPopupAddPhoto () {
 function openPopupEditProfile () {
   openPopup(popupEditProfile);
   cleanErrorFields(popupEditProfile);
-
-  userNameInput.classList.remove('popup__text_type_error');
-  userJobInput.classList.remove('popup__text_type_error');
 
   userNameInput.value = profileName.textContent;
   userJobInput.value = profileProfession.textContent;
@@ -151,5 +153,3 @@ allFormslist.forEach (el => {
     }
   })
 });
-
-

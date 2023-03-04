@@ -1,13 +1,17 @@
-# Проект: Место
+# Project: Place
 
-Четвертая проектная работа в которой используются :
+Project that uses :
 
-_Адаптивная верстка_
+_Adaptive layout_
 
-_Методология БЭМ_
+_BEM methodology_
 
-_Начальная логика с применение JS_
+_use OOP:_
 
-# Ссылка на gh-pages :
+**Classes**
+
+**Moduls**
+
+# Link on gh-pages :
 
 https://vladtolmachev.github.io/mesto/

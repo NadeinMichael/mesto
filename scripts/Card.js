@@ -13,15 +13,23 @@ export default class Card {
     return cardElement;
   }
 
+  _removeElement() {
+    this._element.remove();
+  }
+
+  _toggleLikeButton(btnLike) {
+    btnLike.classList.toggle('btn-like_active');
+  }
+
   _setEventListeners() {
 
     this._element.querySelector('.btn-trash').addEventListener('click', () => {
-    this._element.remove();
+    this._removeElement()
   })
 
     const btnLike = this._element.querySelector('.btn-like');
     btnLike.addEventListener('click', () => {
-    btnLike.classList.toggle('btn-like_active');
+    this._toggleLikeButton(btnLike);
   })
 
 

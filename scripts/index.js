@@ -106,7 +106,7 @@ function closePopupWithEsc (e) {
 function openPopupAddPhoto () {
   openPopup(popupAddPhoto);
 
-  validatorFormPhoto._resetValidation()
+  validatorFormPhoto.resetValidation()
 };
 
 function openPopupEditProfile () {
@@ -115,7 +115,7 @@ function openPopupEditProfile () {
   userNameInput.value = profileName.textContent;
   userJobInput.value = profileProfession.textContent;
 
-  validatorFormEdit._resetValidation()
+  validatorFormEdit.resetValidation()
 };
 
 function submitPopupFormEdit (evt) {

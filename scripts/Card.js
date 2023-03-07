@@ -17,8 +17,8 @@ export default class Card {
     this._element.remove();
   }
 
-  _toggleLikeButton(btnLike) {
-    btnLike.classList.toggle('btn-like_active');
+  _toggleLikeButton() {
+    this._btnLike.classList.toggle('btn-like_active');
   }
 
   _setEventListeners() {
@@ -27,9 +27,9 @@ export default class Card {
     this._removeElement()
   })
 
-    const btnLike = this._element.querySelector('.btn-like');
-    btnLike.addEventListener('click', () => {
-    this._toggleLikeButton(btnLike);
+    this._btnLike = this._element.querySelector('.btn-like');
+    this._btnLike.addEventListener('click', () => {
+    this._toggleLikeButton();
   })
 
 

@@ -1,5 +1,4 @@
 import "./index.css";
-import "./index.html";
 import {
   popupFormEdit,
   userNameInput,
@@ -71,31 +70,20 @@ sectionWithCards.renderItems();
 
 // _________________________________FUNCTIONS________________________________________
 
-function submitPopupFormPhoto(evt) {
-  evt.preventDefault();
-  const inputValues = popupAddCard._getInputValues();
-
-  const card = new Card(
+function submitPopupFormPhoto(inputValues) {
+  const cardElement = createCard(
     { name: inputValues["popup-place"], link: inputValues["popup-link"] },
     "#card-template",
     handleCardClick
   );
-  const cardElement = card.createCard();
-
   sectionWithCards.addItem(cardElement);
-
-  this.closePopup();
 }
 
-function submitPopupFormEdit(evt) {
-  evt.preventDefault();
-  const inputValues = popupEditProfile._getInputValues();
+function submitPopupFormEdit(inputValues) {
   userInfo.setUserInfo(
     inputValues["popup-name"],
     inputValues["popup-profession"]
   );
-
-  this.closePopup();
 }
 
 // _______________________________LISTENERS____________________________________________

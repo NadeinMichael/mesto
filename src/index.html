@@ -13,11 +13,13 @@
       </header>
       <main class="main">
         <section class="profile">
-          <img
-            class="profile__avatar"
-            src="images/cuzco-avatar.jpg"
-            alt="аватар"
-          />
+          <div class="profile__avatar-wrapper">
+            <img
+              class="profile__avatar"
+              src="images/cuzco-avatar.jpg"
+              alt="аватар"
+            />
+          </div>
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <button
@@ -120,13 +122,55 @@
         <p class="popup__caption-img"></p>
       </div>
     </div>
+    <div class="popup popup_delete-card">
+      <div class="popup__container popup__overlay">
+        <button
+          class="popup__btn-close"
+          type="button"
+          aria-label="закрыть"
+        ></button>
+        <h2 class="popup__title popup__title_delete-card">Вы уверены?</h2>
+        <button class="popup__submit" type="submit">Да</button>
+      </div>
+    </div>
+    <div class="popup popup_edit-avatar">
+      <div class="popup__container popup__overlay">
+        <button
+          class="popup__btn-close"
+          type="button"
+          aria-label="закрыть"
+        ></button>
+        <h2 class="popup__title">Обновить аватар</h2>
+        <form class="popup__form" name="popup-form_avatar" novalidate>
+          <div class="popup__item">
+            <input
+              class="popup__text"
+              type="url"
+              name="popup-link"
+              id="popup-link"
+              placeholder="Ссылка на картинку"
+              required
+            />
+            <span class="popup__text-error popup-link-error"></span>
+          </div>
+          <button class="popup__submit" type="submit">Сохранить</button>
+        </form>
+      </div>
+    </div>
     <template id="card-template">
       <div class="gallery__element">
         <button class="btn-trash" type="button" aria-label="удалить"></button>
         <img class="gallery__img" />
         <div class="gallery__info">
           <h2 class="gallery__title"></h2>
-          <button class="btn-like" type="button" aria-label="лайкнуть"></button>
+          <div class="gallery__like-wrapper">
+            <button
+              class="btn-like"
+              type="button"
+              aria-label="лайкнуть"
+            ></button>
+            <span class="gallery__like-counter">0</span>
+          </div>
         </div>
       </div>
     </template>

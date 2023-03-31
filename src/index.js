@@ -17,34 +17,25 @@ import Section from "./scripts/components/Section.js";
 import PopupWithForm from "./scripts/components/PopupWithForm.js";
 import UserInfo from "./scripts/components/UserInfo.js";
 import PopupWithImage from "./scripts/components/PopupWithImage.js";
+import { api } from "./scripts/components/Api.js";
 
-let sectionWithCards;
+let startCards = api.getInitialCards();
 
-fetch("https://mesto.nomoreparties.co/v1/cohort-63/cards", {
-  headers: {
-    authorization: "cadaf3e6-12d4-47e6-8927-b77a2c64004a",
-  },
-})
-  .then((res) => res.json())
-  .then((result) => {
-    sectionWithCards = new Section(
-      {
-        items: result,
-        renderer: (item) => {
-          const cardElement = createCard(
-            item,
-            "#card-template",
-            handleCardClick
-          );
-          sectionWithCards.addItem(cardElement);
-        },
+startCards.then((res) => {
+  sectionWithCards = new Section(
+    {
+      items: res,
+      renderer: (item) => {
+        const cardElement = createCard(item, "#card-template", handleCardClick);
+        sectionWithCards.addItem(cardElement);
       },
-      ".gallery"
-    );
+    },
+    ".gallery"
+  );
 
-    sectionWithCards.renderItems();
-    return sectionWithCards;
-  });
+  sectionWithCards.renderItems();
+  return sectionWithCards;
+});
 
 const validatorFormEdit = new FormValidator(validationConfig, popupFormEdit);
 validatorFormEdit.enableValidation();

@@ -11,14 +11,21 @@ export default class Section {
   }
 
   addItem(element) {
+    this._container.append(element);
+  }
+
+  addNewItem(element) {
     this._container.prepend(element);
   }
 
-  renderItems() {
+  renderItems(userData) {
     this._clear();
-    console.log(this._renderedItems);
     this._renderedItems.forEach((item) => {
-      this._renderer(item);
+      this._renderer(item, userData);
     });
+  }
+
+  updateRenderedItems(data) {
+    this._renderedItems = data;
   }
 }

@@ -35,7 +35,7 @@ class Api {
       .catch(this._showError);
   }
 
-  editProfile({ name, about }) {
+  editProfile({ name, job }) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: {
@@ -43,8 +43,8 @@ class Api {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name,
-        about,
+        name: name,
+        about: job,
       }),
     })
       .then(this._checkValidAnswer)
@@ -62,13 +62,60 @@ class Api {
         name,
         link,
       }),
-    });
+    })
+      .then(this._checkValidAnswer)
+      .catch(this._showError);
   }
 
-  showLikesCounter(id) {
+  addLikeCard(id) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: "PUT",
-    });
+      headers: {
+        authorization: this._token,
+        "Content-Type": "application/json",
+      },
+    })
+      .then(this._checkValidAnswer)
+      .catch(this._showError);
+  }
+
+  removeLikeCard(id) {
+    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+      method: "DELETE",
+      headers: {
+        authorization: this._token,
+        "Content-Type": "application/json",
+      },
+    })
+      .then(this._checkValidAnswer)
+      .catch(this._showError);
+  }
+
+  deleteCard(id) {
+    return fetch(`${this._baseUrl}/cards/${id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: this._token,
+        "Content-Type": "application/json",
+      },
+    })
+      .then(this._checkValidAnswer)
+      .catch(this._showError);
+  }
+
+  editAvatarProfile({ link }) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: {
+        authorization: this._token,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        avatar: link,
+      }),
+    })
+      .then(this._checkValidAnswer)
+      .catch(this._showError);
   }
 }
 

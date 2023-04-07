@@ -13,15 +13,15 @@ import {
   popupFormPhoto,
   popupAvatarEdit,
   validationConfig,
-} from "./scripts/utils/constants.js";
-import Card from "./scripts/components/Card.js";
-import FormValidator from "./scripts/components/FormValidator.js";
-import Section from "./scripts/components/Section.js";
-import PopupWithForm from "./scripts/components/PopupWithForm.js";
-import PopupWithConfirm from "./scripts/components/PopupWithConfirm.js";
-import UserInfo from "./scripts/components/UserInfo.js";
-import PopupWithImage from "./scripts/components/PopupWithImage.js";
-import { api } from "./scripts/components/Api.js";
+} from "../scripts/utils/constants.js";
+import Card from "../scripts/components/Card.js";
+import FormValidator from "../scripts/components/FormValidator.js";
+import Section from "../scripts/components/Section.js";
+import PopupWithForm from "../scripts/components/PopupWithForm.js";
+import PopupWithConfirm from "../scripts/components/PopupWithConfirm.js";
+import UserInfo from "../scripts/components/UserInfo.js";
+import PopupWithImage from "../scripts/components/PopupWithImage.js";
+import { api } from "../scripts/components/Api.js";
 
 const popupAddCard = new PopupWithForm({
   popupSelector: ".popup_add-photo",

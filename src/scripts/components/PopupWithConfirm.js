@@ -13,8 +13,8 @@ class PopupWithConfirm extends Popup {
 
   setEventListeners() {
     super.setEventListeners();
-
-    this._popup.addEventListener("click", (event) => {
+    this._submitBtn = this._popup.querySelector(".popup__submit");
+    this._submitBtn.addEventListener("click", (event) => {
       event.preventDefault();
       this._handleConfirmDelete(this._card);
     });

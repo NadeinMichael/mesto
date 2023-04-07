@@ -11,7 +11,7 @@ export default class UserInfo {
       name: this._userName,
       about: this._userAbout,
       avatar: this._userAvatar,
-      id: this._userId,
+      _id: this._userId,
     };
   }
 

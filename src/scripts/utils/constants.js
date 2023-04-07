@@ -13,6 +13,7 @@ export const popupAvatarEdit = document.forms["popup-form_avatar"];
 export const editAvatarButton = document.querySelector(
   ".profile__avatar-wrapper"
 );
+export const avatarImg = document.querySelector(".profile__avatar");
 
 export const validationConfig = {
   formElement: ".popup__form",

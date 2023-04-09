@@ -11,24 +11,16 @@ class Api {
     return Promise.reject(`Ошибка: ${res.status}`);
   }
 
-  _showError(err) {
-    console.log(err);
-  }
-
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
-    })
-      .then(this._checkValidAnswer)
-      .catch(this._showError);
+    }).then(this._checkValidAnswer);
   }
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
-    })
-      .then(this._checkValidAnswer)
-      .catch(this._showError);
+    }).then(this._checkValidAnswer);
   }
 
   editProfile({ name, job }) {
@@ -39,9 +31,7 @@ class Api {
         name: name,
         about: job,
       }),
-    })
-      .then(this._checkValidAnswer)
-      .catch(this._showError);
+    }).then(this._checkValidAnswer);
   }
 
   addNewCard({ name, link }) {
@@ -52,36 +42,28 @@ class Api {
         name,
         link,
       }),
-    })
-      .then(this._checkValidAnswer)
-      .catch(this._showError);
+    }).then(this._checkValidAnswer);
   }
 
   addLikeCard(id) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: "PUT",
       headers: this._headers,
-    })
-      .then(this._checkValidAnswer)
-      .catch(this._showError);
+    }).then(this._checkValidAnswer);
   }
 
   removeLikeCard(id) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: "DELETE",
       headers: this._headers,
-    })
-      .then(this._checkValidAnswer)
-      .catch(this._showError);
+    }).then(this._checkValidAnswer);
   }
 
   deleteCard(id) {
     return fetch(`${this._baseUrl}/cards/${id}`, {
       method: "DELETE",
       headers: this._headers,
-    })
-      .then(this._checkValidAnswer)
-      .catch(this._showError);
+    }).then(this._checkValidAnswer);
   }
 
   editAvatarProfile({ link }) {
@@ -91,9 +73,7 @@ class Api {
       body: JSON.stringify({
         avatar: link,
       }),
-    })
-      .then(this._checkValidAnswer)
-      .catch(this._showError);
+    }).then(this._checkValidAnswer);
   }
 }
 

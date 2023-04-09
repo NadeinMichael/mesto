@@ -12,20 +12,19 @@
   padding: 0;
   border-radius: 2px;
   border: none;
-  transition: opacity .3s ease;
+  transition: opacity 0.3s ease;
 }
 
 .popup__submit:disabled {
   border: 1px solid rgba(0, 0, 0, 1);
   background-color: #fff;
   color: black;
-  opacity: .2;
-
+  opacity: 0.2;
 }
 
 .popup__submit:not(:disabled):hover {
   cursor: pointer;
-  opacity: .8;
+  opacity: 0.8;
 }
 
 @media all and (max-width: 550px) {

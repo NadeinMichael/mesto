@@ -26,7 +26,7 @@ import { api } from "../scripts/components/Api.js";
 const popupAddCard = new PopupWithForm({
   popupSelector: ".popup_add-photo",
   handleSubmitClick: (data) => {
-    showLoading(popupFormPhoto, true, "Создать");
+    popupAddCard.renderLoading(true);
     api
       .addNewCard({ name: data["popup-place"], link: data["popup-link"] })
       .then((data) => {
@@ -37,9 +37,11 @@ const popupAddCard = new PopupWithForm({
         );
         sectionWithCards.addNewItem(cardElement);
         popupAddCard.closePopup();
-        showLoading(popupFormPhoto, false, "Создать");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => {
+        popupAddCard.renderLoading(false);
+      });
   },
 });
 popupAddCard.setEventListeners();
@@ -47,22 +49,19 @@ popupAddCard.setEventListeners();
 const popupEditProfile = new PopupWithForm({
   popupSelector: ".popup_edit-profile",
   handleSubmitClick: (data) => {
-    showLoading(popupFormEdit, true, "Сохранить");
+    popupEditProfile.renderLoading(true);
     api
-      .editProfile({ name: data.name, job: data.job })
+      .editProfile({ name: data.name, job: data.about })
       .then((res) => {
-        user.setInfo({
-          name: res.name,
-          about: res.about,
-          avatar: res.avatar,
-          id: res._id,
-        });
-        profileName.textContent = user._userName;
-        profileProfession.textContent = user._userAbout;
-        showLoading(popupFormEdit, true, "Сохранить");
+        user.setInfo(res);
+        profileName.textContent = user.getInfo().name;
+        profileProfession.textContent = user.getInfo().about;
         popupEditProfile.closePopup();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => {
+        popupEditProfile.renderLoading(false);
+      });
   },
 });
 
@@ -71,15 +70,18 @@ popupEditProfile.setEventListeners();
 const popupEditAvatar = new PopupWithForm({
   popupSelector: ".popup_edit-avatar",
   handleSubmitClick: (data) => {
-    showLoading(popupAvatarEdit, true, "Сохранить");
+    popupEditAvatar.renderLoading(true);
     api
       .editAvatarProfile({ link: data.link })
       .then((res) => {
-        avatarImg.src = res.avatar;
-        showLoading(popupAvatarEdit, false, "Сохранить");
+        user.setInfo(res);
+        avatarImg.src = user.getInfo().avatar;
         popupEditAvatar.closePopup();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => {
+        popupEditAvatar.renderLoading(false);
+      });
   },
 });
 
@@ -108,15 +110,6 @@ const user = new UserInfo({
   userAbout: profileProfession,
   userAvatar: profileAvatar,
 });
-
-const showLoading = (activeForm, loading, buttonValue) => {
-  const submitButton = activeForm.querySelector(".popup__submit");
-  if (loading) {
-    submitButton.textContent = "Сохранение...";
-  } else {
-    submitButton.textContent = buttonValue;
-  }
-};
 
 const handleCardClick = (link, name) => {
   popupWithImage.openPopup(link, name);
@@ -166,46 +159,44 @@ const sectionWithCards = new Section(
 
 Promise.all([api.getInitialCards(), api.getUserInfo()])
   .then(([resCards, resUser]) => {
-    profileName.textContent = resUser.name;
-    profileProfession.textContent = resUser.about;
-    profileAvatar.src = resUser.avatar;
+    user.setInfo(resUser);
 
-    user.setInfo({
-      name: resUser.name,
-      about: resUser.about,
-      avatar: resUser.avatar,
-      id: resUser._id,
-    });
+    profileName.textContent = user.getInfo().name;
+    profileProfession.textContent = user.getInfo().about;
+    profileAvatar.src = user.getInfo().avatar;
+
     sectionWithCards.updateRenderedItems(resCards);
     sectionWithCards.renderItems(resUser);
 
     editProfileButton.addEventListener("click", () => {
-      userNameInput.value = profileName.textContent;
-      userJobInput.value = profileProfession.textContent;
+      popupEditProfile.setInputValues(user.getInfo());
       popupEditProfile.openPopup();
-      validatorFormEdit.resetValidation();
+      formValidators["popup-form_edit"].resetValidation();
     });
 
     addPhotoButton.addEventListener("click", () => {
       popupAddCard.openPopup();
-      validatorFormPhoto.resetValidation();
+      formValidators["popup-form_photo"].resetValidation();
     });
 
     editAvatarButton.addEventListener("click", () => {
       popupEditAvatar.openPopup();
-      validatorAvatarEdit.resetValidation();
+      formValidators["popup-form_avatar"].resetValidation();
     });
   })
   .catch((err) => console.log(err));
 
-const validatorFormEdit = new FormValidator(validationConfig, popupFormEdit);
-validatorFormEdit.enableValidation();
+const formValidators = {};
 
-const validatorFormPhoto = new FormValidator(validationConfig, popupFormPhoto);
-validatorFormPhoto.enableValidation();
+const enableValidation = (config) => {
+  const formList = Array.from(document.querySelectorAll(config.formElement));
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(config, formElement);
+    const formName = formElement.getAttribute("name");
 
-const validatorAvatarEdit = new FormValidator(
-  validationConfig,
-  popupAvatarEdit
-);
-validatorAvatarEdit.enableValidation();
+    formValidators[formName] = validator;
+    validator.enableValidation();
+  });
+};
+
+enableValidation(validationConfig);

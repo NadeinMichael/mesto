@@ -29,9 +29,8 @@ export default class Card {
     this.removeTrashButton();
     this.updateLikesCounter(this._data);
 
-    const photoCard = this._element.querySelector(".gallery__img");
-    photoCard.src = this._link;
-    photoCard.alt = this._name;
+    this._image.src = this._link;
+    this._image.alt = this._name;
     const titleCard = this._element.querySelector(".gallery__title");
     titleCard.textContent = this._name;
 

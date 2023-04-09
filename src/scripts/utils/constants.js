@@ -1,6 +1,6 @@
 export const popupFormEdit = document.forms["popup-form_edit"];
 export const userNameInput = popupFormEdit.querySelector('[name="name"]');
-export const userJobInput = popupFormEdit.querySelector('[name="job"]');
+export const userJobInput = popupFormEdit.querySelector('[name="about"]');
 export const profileProfession = document.querySelector(".profile__profession");
 export const editProfileButton = document.querySelector(
   ".profile__edit-button"

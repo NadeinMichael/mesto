@@ -54,8 +54,6 @@ const popupEditProfile = new PopupWithForm({
       .editProfile({ name: data.name, job: data.about })
       .then((res) => {
         user.setInfo(res);
-        profileName.textContent = user.getInfo().name;
-        profileProfession.textContent = user.getInfo().about;
         popupEditProfile.closePopup();
       })
       .catch((err) => console.log(err))
@@ -75,7 +73,6 @@ const popupEditAvatar = new PopupWithForm({
       .editAvatarProfile({ link: data.link })
       .then((res) => {
         user.setInfo(res);
-        avatarImg.src = user.getInfo().avatar;
         popupEditAvatar.closePopup();
       })
       .catch((err) => console.log(err))
@@ -160,10 +157,6 @@ const sectionWithCards = new Section(
 Promise.all([api.getInitialCards(), api.getUserInfo()])
   .then(([resCards, resUser]) => {
     user.setInfo(resUser);
-
-    profileName.textContent = user.getInfo().name;
-    profileProfession.textContent = user.getInfo().about;
-    profileAvatar.src = user.getInfo().avatar;
 
     sectionWithCards.updateRenderedItems(resCards);
     sectionWithCards.renderItems(resUser);

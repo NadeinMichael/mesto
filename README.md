@@ -14,4 +14,4 @@ _use OOP:_
 
 # Link on gh-pages :
 
-https://vladtolmachev.github.io/mesto/
+https://nadeinmichael.github.io/mesto/
